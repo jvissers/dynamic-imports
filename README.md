@@ -45,6 +45,11 @@ Then trying to run a production build (created through `pnpm run build`) results
 So the first challenge is how this can be resolved.
 It might be that we need to add some configuration to `vite.config.ts`.
 
+According to the above rollup warning, an extension is required for these things to work.
+Tested this with changing `import(component)` to `import('${component}.js')` and manually putting an `imported.js` in the `dist/assets` folder.
+This _breaks_ the `dev` flow, but resolves the `build/serve` flow.
+So this makes me wonder whether this would work at all.
+
 ## Importing modules from `a bundle`
 
 This builds on the former experiment, with the goal to do a dynamic import from some sort of bundle.
